@@ -1,6 +1,11 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
+<%@page import="dao.FileDAO"%>
 <%@page import="model.User"%>
+<%@page import="model.File"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<% User user =(User) session.getAttribute("user"); 
+<% 
+User user =(User) session.getAttribute("user"); 
 // out.print(user);
 if (user == null) {
 	response.sendRedirect("/ShareFile/login.jsp");
@@ -100,7 +105,15 @@ if (user == null) {
 	<table class="table table-bordered table-striped table-hover">
 		<thead><tr><th>File ID</th><th>Tên file</th><th>Kích thước</th><th>Kiểu file</th><th>Tải xuống</th></tr></thead>
 		<tbody>
-			
+			<%
+			FileDAO filedao = new FileDAO();
+			ArrayList<File> files = (ArrayList<File>) filedao.searchAllFilesOfUser(user.getUser_id());
+			out.print("<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>");
+			for (File file : files) {
+				out.print("<tr><td>" + file.getFile_id() +"</td><td>"+ file.getFile_name() +"</td><td>" + file.getSize() 
+				+"</td><td>"+ file.getFile_extension() +"</td><td><a href='/ShareFile/download?file="+ file.getFile_name() +"'>Tải xuống</a></td>");
+			}
+			%>
 		</tbody>
 	</table>
 	</div>

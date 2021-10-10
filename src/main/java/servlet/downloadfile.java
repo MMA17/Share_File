@@ -26,7 +26,7 @@ public class downloadfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext context = getServletContext();
-		String fileName = "test.txt";
+		String fileName = request.getParameter("file");
 		String fullPath = context.getRealPath("/uploads/" + fileName);
 		Path path = Paths.get(fullPath);
 		byte[] data = Files.readAllBytes(path);

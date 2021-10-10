@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class FileDAO extends DAO{
     // Tim tat ca cac file duoc nguoi dung tai len hoac duoc chia se
-    public ArrayList<File> searchAllFilesOfUser(String user_id) {
+    public ArrayList<File> searchAllFilesOfUser(int user_id) {
         ArrayList<File> files = new ArrayList<File>();
         String query = 
                 "SELECT tblfile.file_id, file_name, size, file_extension, readPermission, deletePermission "
@@ -25,16 +25,16 @@ public class FileDAO extends DAO{
                 + "AND tblfile.file_id = tblpermission.file_id";
         try {
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, user_id);
-            ps.setString(2, user_id);
+            ps.setInt(1, user_id);
+            ps.setInt(2, user_id);
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
                 File file = new File();
-                file.setFile_id(rs.getInt(0));
-                file.setFile_name(rs.getString(1));
-                file.setSize(rs.getInt(2));
-                file.setFile_extension(rs.getString(3));
+                file.setFile_id(rs.getInt(1));
+                file.setFile_name(rs.getString(2));
+                file.setSize(rs.getInt(3));
+                file.setFile_extension(rs.getString(4));
                 
                 files.add(file);
             }
