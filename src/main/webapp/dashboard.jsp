@@ -1,6 +1,11 @@
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<% User user =(User) session.getAttribute("user"); %>
+<% User user =(User) session.getAttribute("user"); 
+// out.print(user);
+if (user == null) {
+	response.sendRedirect("/ShareFile/login.jsp");
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,16 +82,21 @@
 			</h1>
 			<h4>Tải lên file của bạn không giới hạn! Lưu trữ vĩnh viễn!</h4>
 			<form action="upload" method="POST" enctype="multipart/form-data">
+				<input type="file" name="file" multiple="multiple" required="required"><br>
 				<input type="submit" value="Upload Now!"><br>
-				<input type="text" name="userid" value=<%=user.getUser_id()%> hidden="">
-				<input type="file" name="file" multiple="multiple" required="required">
 			</form>
 			
 		</div>
 	</div>
 	<div class="container">
 	<h3>${requestScope.message}</h3>
-	<p>Xin chào, <%= user.getName() %></p>
+	<p>Xin chào, 
+	<%
+	if (user != null)
+	{
+		out.print(user.getName());
+	}
+	%></p>
 	<table class="table table-bordered table-striped table-hover">
 		<thead><tr><th>File ID</th><th>Tên file</th><th>Kích thước</th><th>Kiểu file</th><th>Tải xuống</th></tr></thead>
 		<tbody>

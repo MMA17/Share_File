@@ -46,10 +46,8 @@ public class uploadfile extends HttpServlet {
 			part.write(fullSavePath + "/" + fileName);
 		}
 		// Lấy thông tin rồi ghi vào database file
-		String temp_user_id = request.getParameter("user_id");
-		System.out.print(temp_user_id);
-		int user_id = Integer.parseInt(temp_user_id);
-//		int user_id = 1;
+		User user = (User) request.getSession().getAttribute("user");
+		int user_id = user.getUser_id();
 		FileDAO file = new FileDAO();
 		file.addFile(fileName, 1024, user_id, ".pdf");
 		request.setAttribute("message", "Tải file lên thành công!");
