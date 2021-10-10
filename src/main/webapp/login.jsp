@@ -4,41 +4,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register</title>
+<title>Login</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
 </head>
 <body>
 	
 	<div class="container">
 
-		<ul class="list-group">
-			<li class="list-group-item active">Input detail information</li>
-
-			<li class="list-group-item">
-				<form method="post" action="/ShareFile/login">
-					<div class="form-group">
-						<label for="usr">User Name</label> <input type="text"
-							class="form-control" name="username" />
+		<div class="row pt-5 mt-5">
+			<div class="col-lg-5 col-md-8" style="margin: 0 auto">
+				<form class="card bg-light px-5 py-4 shadow-lg border-light"
+					method="POST" action="/ShareFile/login">
+					<div class="mb-4">
+						<h2 class="text-center"><strong>Login</strong></h2>
 					</div>
-
-					<div class="form-group">
-						<label for="pwd">Password</label> <input type="password"
-							class="form-control" name="password" />
+					<div class="mb-4 input-group-lg">
+						<input type="text" placeholder="Username" class="form-control"
+							name="username" value="">
 					</div>
-
-					<button type="submit" class="btn btn-success">Submit</button>
-					<p class="">
-						Chưa có tài khoản? 
-						<a	class="" href="register.jsp">đăng ký</a>
-							
+					<div class="mt-1 mb-3 input-group-lg">
+						<input type="password" placeholder="Password" class="form-control"
+							name="password" value="">
+					</div>
+					<div class="mb-4 form-check">
+						<input type="checkbox" class="form-check-input" name=""> <label
+							class="form-check-label fw-bold">Remember me</label>
+					</div>
+					<button type="submit" class="btn btn-primary mb-4" name="submit">Submit</button>
+					<p class="text-center fw-bolder">
+						Chưa có tài khoản? <a
+							class="text-primary text-capitalize text-decoration-none"
+							href="register.jsp">đăng ký</a>
 					</p>
 				</form>
-			</li>
-		</ul>
+			</div>
+			
+		</div>
 	</div>
+	
 
 </body>
 </html>

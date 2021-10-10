@@ -12,35 +12,45 @@
 </head>
 <body>
 	<div class="container">
-		<ul class="list-group">
-			<li class="list-group-item active">Input detail information</li>
-			<li class="list-group-item">
-				<form method="post" action="/ShareFile/register">
-					<div class="form-group">
-						<label for="usr">User</label> <input type="text"
-							class="form-control" name="username" />
+		<div class="row pt-5 mt-5">
+			
+			<div class="col-lg-5 col-md-8" style="margin: 0 auto">
+				<form class="card bg-light px-5 py-4 shadow-lg border-light"
+					method="POST" action="/ShareFile/register">
+					<div class="mb-4">
+						<h2 class="text-center"><strong>Register</strong></h2>
 					</div>
-
-					<div class="form-group">
-						<label for="email">Name</label> <input type="text"
-							class="form-control" name="name" />
+					<div class="mb-4">
+						<input type="text" placeholder="Username" class="form-control"
+							name="username" value="">
 					</div>
-					
-					
-					<div class="form-group">
-						<label for="email">Telephone</label> <input type="tel"
-							class="form-control" name="tel" />
+					<div class="mb-4 mt-1">
+						<input type="text" placeholder="Name" class="form-control"
+							name="name" value="">
 					</div>
-					
-					<div class="form-group">
-						<label for="pwd">Password</label> <input type="password"
-							class="form-control" name="password" />
+					<div class="mb-4 mt-1 ">
+						<input type="tel" placeholder="Telephone number"
+							class="form-control" name="tel" value="">
 					</div>
-
-					<button type="submit" class="btn btn-success">Register</button>
+					<div class="mb-4 mt-1 ">
+						<input type="password" placeholder="password" class="form-control"
+							name="password" value="">
+					</div>
+					<div class="mb-5 mt-1 ">
+						<input type="password" placeholder="Confirm password"
+							class="form-control" name="cpassword"
+							value="">
+					</div>
+					<button name="submit" class="btn btn-primary mb-4">Submit</button>
+					<p class="text-center fw-bolder">
+						Đã có tài khoản? <a
+							class="text-primary text-capitalize text-decoration-none"
+							href="login.jsp">đăng nhập</a>
+					</p>
 				</form>
-			</li>
-		</ul>
+			</div>
+			
+		</div>
 	</div>
 
 </body>
