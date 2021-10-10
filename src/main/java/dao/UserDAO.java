@@ -23,7 +23,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
-                    
+                    user.setStatus(rs.getString("status"));
                     res.add(user);
                 }
             } catch (Exception e) {
@@ -50,7 +50,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
-                    
+                    user.setStatus(rs.getString("status"));
                     res.add(user);
                 }
             } catch (Exception e) {
@@ -79,6 +79,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
+                    user.setStatus(rs.getString("status"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -190,7 +191,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
-                    user.setNote(rs.getString("status"));
+                    user.setStatus(rs.getString("status"));
                     users.add(user);
 				}
 			} catch (Exception e) {
@@ -215,7 +216,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
-                    user.setNote(rs.getString("status"));
+                    user.setStatus(rs.getString("status"));
                     users.add(user);
 				}
 			} catch (Exception e) {

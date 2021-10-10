@@ -63,8 +63,8 @@ if (user == null) {
 				
 				UserDAO userdao = new UserDAO();
 				ArrayList<User> users = (ArrayList<User>) userdao.searchFriends(user.getUser_id());
-				for (User u : users) {
-					out.print("<tr><td>" + u.getUser_name() + "</td><td>" + "Offline" + "</td></tr>");
+				for (User us : users) {
+					out.print("<tr><td>" + us.getUser_name() + "</td><td>" + us.getStatus() + "</td></tr>");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

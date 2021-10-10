@@ -42,11 +42,11 @@ public class login extends HttpServlet{
 		User user = uDao.checkLogin(username, password);
 
 		if(user.getUser_id() != 0) {
-			
-			HttpSession httpSession = req.getSession();
-			httpSession.setAttribute("user", user);
 			UserDAO userdao = new UserDAO();
 			userdao.setUserStatusOnline(user.getUser_id());
+			HttpSession httpSession = req.getSession();
+			httpSession.setAttribute("user", user);
+			
 //			req.getSession().setAttribute("user", username);
 			
 			resp.sendRedirect("/ShareFile/dashboard.jsp");
