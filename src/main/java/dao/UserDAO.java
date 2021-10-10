@@ -190,6 +190,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
+                    user.setNote(rs.getString("status"));
                     users.add(user);
 				}
 			} catch (Exception e) {
@@ -200,7 +201,7 @@ public class UserDAO extends DAO{
         
         public ArrayList<User> searchFriends(int user_id) {
         	ArrayList<User> users = new ArrayList<User>();
-        	String query = "SELECT * FROM tbluser, tblfriend WHERE (sender_id = ? OR receiver_id = ?) AND status = 'done' AND tbluser.user_id = tblfriend.receiver_id";
+        	String query = "SELECT * FROM tbluser, tblfriend WHERE (sender_id = ? OR receiver_id = ?) AND tblfriend.status = 'done' AND tbluser.user_id = tblfriend.receiver_id";
         	try {
 				PreparedStatement ps = con.prepareStatement(query);
 				ps.setInt(1, user_id);
@@ -214,6 +215,7 @@ public class UserDAO extends DAO{
                     user.setUsaged(rs.getInt("usaged"));
                     user.setTel(rs.getString("tel"));
                     user.setNote(rs.getString("note"));
+                    user.setNote(rs.getString("status"));
                     users.add(user);
 				}
 			} catch (Exception e) {
@@ -240,6 +242,28 @@ public class UserDAO extends DAO{
 				PreparedStatement ps = con.prepareStatement(query);
 				ps.setInt(1, sender_id);
 				ps.setInt(2, receiver_id);
+				ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }
+        
+        public void setUserStatusOnline(int user_id) {
+        	String query = "UPDATE tbluser SET status = 'online' WHERE user_id = ?";
+        	try {
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setInt(1, user_id);
+				ps.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }
+        
+        public void setUserStatusOffline(int user_id) {
+        	String query = "UPDATE tbluser SET status = 'offline' WHERE user_id = ?";
+        	try {
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setInt(1, user_id);
 				ps.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -55,7 +55,7 @@ if (user == null) {
 	</div>
 	<div class="col-2" style="position:fixed;bottom: 5px; right: 10px; background-color: #FFFFF;
 			border-style: inset;''border-radius: 6px; border-width:2px; color: black;">
-		<p>Danh sách bạn bè</p>
+		<h3>Danh sách bạn bè</h3>
 		<table class="table table-bordered table-striped table-hover">
 		<tbody>
 			<%

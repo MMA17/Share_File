@@ -56,9 +56,25 @@ if (user == null) {
 		style="position: fixed; bottom: 5px; left: 10px; background-color: #0275d8; border-radius: 4px; color: white;">
 		<p>Tổng số lượt truy cập: 999</p>
 	</div>
-	<div class="col-2"
-		style="position: fixed; bottom: 5px; right: 10px; background-color: #FFFFF; border-style: inset; '' border-radius: 6px; border-width: 2px; color: black;">
-		<p>Danh sách bạn bè</p>
+	<div class="col-2" style="position:fixed;bottom: 5px; right: 10px; background-color: #FFFFF;
+			border-style: inset;''border-radius: 6px; border-width:2px; color: black;">
+		<h3>Danh sách bạn bè</h3>
+		<table class="table table-bordered table-striped table-hover">
+		<tbody>
+			<%
+			try {
+				
+				UserDAO userdao = new UserDAO();
+				ArrayList<User> users = (ArrayList<User>) userdao.searchFriends(user.getUser_id());
+				for (User u : users) {
+					out.print("<tr><td>" + u.getUser_name() + "</td><td>" + "Offline" + "</td></tr>");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			%>
+		</tbody>
+	</table>
 	</div>
 	<nav class="navbar sticky-top navbar-expand-lg px-5"
 		style="background-color: #e9ecef">

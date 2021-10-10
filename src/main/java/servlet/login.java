@@ -14,7 +14,7 @@ import javax.websocket.Session;
 
 import dao.UserDAO;
 import model.User;
-
+import dao.UserDAO;
 @WebServlet(urlPatterns = "/login")
 public class login extends HttpServlet{
 
@@ -45,7 +45,8 @@ public class login extends HttpServlet{
 			
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("user", user);
-			
+			UserDAO userdao = new UserDAO();
+			userdao.setUserStatusOnline(user.getUser_id());
 //			req.getSession().setAttribute("user", username);
 			
 			resp.sendRedirect("/ShareFile/dashboard.jsp");
