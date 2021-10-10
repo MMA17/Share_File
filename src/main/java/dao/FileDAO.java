@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package dao;
 
-import Model.User;
+import model.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import Model.File;
 import java.util.ArrayList;
 /**
  *

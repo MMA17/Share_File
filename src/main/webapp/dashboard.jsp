@@ -1,4 +1,6 @@
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<% User user =(User) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,34 +53,11 @@
 				<li class="nav-item active"><a class="nav-link text-primary p-2"
 					href="dashboard.jsp"><b>Trang Chủ</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
-					href="dangnhap.php"><b>Tài khoản</b></a></li>
+					href="account.jsp"><b>Tài khoản</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
-					href="dangnhap.php"><b>Bạn bè</b></a></li>
+					href="friend.jsp"><b>Bạn bè</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
-					href="dangnhap.php"><b>Đăng xuất</b></a></li>
-				<!--<?php 
-                    if (!isset($_SESSION['username'])) {
-
-                    echo'<li class="nav-item">
-                        <a class="nav-link text-primary p-2" href="dangky.php"><b>Đăng Ký</b></a>
-                    </li>';
-                    
-                    echo'<li class="nav-item">
-                        <a class="nav-link text-primary p-2" href="dangnhap.php"><b>Đăng Nhập</b></a>
-                    </li>';
-                    }
-                    else {
-                        echo'<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-primary p-2" href="#" id="navbarDropdown" role="button" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>' . $_SESSION['name'] . ' </b>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="account.php">Thông tin cá nhân</a>
-                                <a class="dropdown-item" href="dangxuat.php">Đăng xuất</a>
-                            </div>
-                        </li>';
-                    }
-                    ?>-->
+					href="logout.jsp"><b>Đăng xuất</b></a></li>
 			</ul>
 			<form action="timkiem.php" class="form-inline my-2 my-lg-0"
 				method="POST">
@@ -99,21 +78,21 @@
 			<h4>Tải lên file của bạn không giới hạn! Lưu trữ vĩnh viễn!</h4>
 			<form action="upload" method="POST" enctype="multipart/form-data">
 				<input type="submit" value="Upload Now!"><br>
-				<input type="file" name="file">
+				<input type="text" name="userid" value=<%=user.getUser_id()%> hidden="">
+				<input type="file" name="file" multiple="multiple" required="required">
 			</form>
 			
 		</div>
 	</div>
 	<div class="container">
 	<h3>${requestScope.message}</h3>
-		<!--  <?php 
-        if (isset($_SESSION['name'])) {
-            echo "<h5 class='text-primary'style='display:inline-block'> Xin Chào, ";
-            echo $_SESSION['name'] . "! ";
-            echo "Bạn đang có <b><u>" . $_SESSION['votes'] . "</u></b> lượt bình chọn.";
-            echo "</h5>";
-        }    
-    	?>-->
+	<p>Xin chào, <%= user.getName() %></p>
+	<table class="table table-bordered table-striped table-hover">
+		<thead><tr><th>File ID</th><th>Tên file</th><th>Kích thước</th><th>Kiểu file</th><th>Tải xuống</th></tr></thead>
+		<tbody>
+			
+		</tbody>
+	</table>
 	</div>
 	
 </body>

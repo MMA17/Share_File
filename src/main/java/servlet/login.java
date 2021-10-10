@@ -39,18 +39,18 @@ public class login extends HttpServlet{
 		String password = req.getParameter("password");
 		
 		UserDAO uDao = new UserDAO();
-		boolean checkLogin = uDao.checkLogin(username, password);
+		User user = uDao.checkLogin(username, password);
 
-		if(checkLogin) {
+		if(user.getUser_id() != 0) {
 			
 			HttpSession httpSession = req.getSession();
-			httpSession.setAttribute("user", username);
+			httpSession.setAttribute("user", user);
 			
 //			req.getSession().setAttribute("user", username);
 			
-			resp.sendRedirect("/ShareFile/index.jsp");
+			resp.sendRedirect("/ShareFile/dashboard.jsp");
 		}else {
-			printWriter.print("<p style='color: red;'>Tai khoan hoav mat khau khong chinh xac</p>");
+			printWriter.print("<p style='color: red;'>Tai khoan hoac mat khau khong chinh xac</p>");
 			req.getServletContext().getRequestDispatcher("/login.jsp").include(req, resp);
 			
 		}

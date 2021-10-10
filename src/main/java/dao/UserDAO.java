@@ -59,8 +59,10 @@ public class UserDAO extends DAO{
             return res;
         }
         
-        public boolean checkLogin(String username, String pass) {
+        public User checkLogin(String username, String pass) {
             ArrayList<User> res = new ArrayList<User>();
+            User user = new User();
+            user.setUser_id(0);
             String query = "SELECT * FROM tblUser WHERE user_name = ? AND pass = ?";
             int count = 0;
             try {
@@ -70,16 +72,18 @@ public class UserDAO extends DAO{
                 ps.setString(2, pass);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    count++;
+                	user.setUser_id(rs.getInt("user_id"));
+                    user.setUser_name(rs.getString("user_name"));
+                    user.setPass(rs.getString("pass"));
+                    user.setName(rs.getString("name"));
+                    user.setUsaged(rs.getInt("usaged"));
+                    user.setTel(rs.getString("tel"));
+                    user.setNote(rs.getString("note"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println(count);
-            if (count > 0) {
-                return true;
-            }
-            return false;
+            return user;
         }
         
         public boolean addUser(String user_name, String pass, String name, String tel) {

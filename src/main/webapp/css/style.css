@@ -179,7 +179,7 @@ body {
 
 p {
   margin: calc(50vh - 40px) auto 0 auto;
-  font-size: 65px;
+  /*font-size: 65px;*/
   text-transform: uppercase;
   font-family: "Archivo Black", "Archivo", sans-serif;
   font-weight: normal;
