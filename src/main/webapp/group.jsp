@@ -54,7 +54,7 @@
 				<tr>
 					<th>ID nhóm</th>
 					<th>Tên nhóm</th>
-					
+					<th>Kiểu nhóm</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,7 +66,7 @@
 
 					ArrayList<Group> list = uDao.displayGroup(userId);
 					for (Group group : list) {
-						out.print("<tr><td>" + group.getGroup_id() + "</td><td>" + group.getGroup_name() + "</td>");
+						out.print("<tr><td>" + group.getGroup_id() + "</td><td>" + group.getGroup_name() + "</td><td>" + group.getGroup_type() + "</td>");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
