@@ -25,6 +25,7 @@ public class GroupDAO extends DAO {
             ResultSet rs = ps.executeQuery();
 //            System.out.println(rs);
             int row=rs.getRow();
+            System.out.println(row);
             if (row < 1) {
                 return false;
             } else {
@@ -32,7 +33,7 @@ public class GroupDAO extends DAO {
                 ps = con.prepareStatement(sql);
                 ps.setString(1, note);
                 ps.setInt(2, user_id);
-                ps.setInt(3, group.getGroup_id());
+                ps.setInt(3, rs.getInt("group_id"));
                 ps.executeUpdate();
             }
         } catch (Exception e) {

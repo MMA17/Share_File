@@ -5,8 +5,8 @@
 <%@page import="model.File"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<% 
-User user =(User) session.getAttribute("user"); 
+<%
+User user = (User) session.getAttribute("user");
 // out.print(user);
 if (user == null) {
 	response.sendRedirect("/ShareFile/login.jsp");
@@ -22,7 +22,8 @@ if (user == null) {
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -50,28 +51,29 @@ if (user == null) {
 			href="https://www.facebook.com/MISS-TEEN-VietNam-102237985334298"
 			class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
 	</div>
-	<div style="position:fixed;bottom: 5px; left: 10px; background-color: #0275d8;border-radius: 4px; color: white;">
+	<div
+		style="position: fixed; bottom: 5px; left: 10px; background-color: #0275d8; border-radius: 4px; color: white;">
 		<p>Tổng số lượt truy cập: 999</p>
 	</div>
-	<div class="col-2" style="position:fixed;bottom: 5px; right: 10px; background-color: #FFFFF;
-			border-style: inset;''border-radius: 6px; border-width:2px; color: black;">
+	<div class="col-2"
+		style="position: fixed; bottom: 5px; right: 10px; background-color: #FFFFF; border-style: inset; '' border-radius: 6px; border-width: 2px; color: black;">
 		<h3>Danh sách bạn bè</h3>
 		<table class="table table-bordered table-striped table-hover">
-		<tbody>
-			<%
-			try {
-				
-				UserDAO userdao = new UserDAO();
-				ArrayList<User> users = (ArrayList<User>) userdao.searchFriends(user.getUser_id());
-				for (User us : users) {
-					out.print("<tr><td>" + us.getUser_name() + "</td><td>" + us.getStatus() + "</td></tr>");
+			<tbody>
+				<%
+				try {
+
+					UserDAO userdao = new UserDAO();
+					ArrayList<User> users = (ArrayList<User>) userdao.searchFriends(user.getUser_id());
+					for (User us : users) {
+						out.print("<tr><td>" + us.getUser_name() + "</td><td>" + us.getStatus() + "</td></tr>");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			%>
-		</tbody>
-	</table>
+				%>
+			</tbody>
+		</table>
 	</div>
 	<nav class="navbar sticky-top navbar-expand-lg px-5"
 		style="background-color: #e9ecef">
@@ -84,17 +86,19 @@ if (user == null) {
 		</button>
 		<div class="collapse navbar-collapse" id="navbarContent">
 			<ul class="navbar-nav mr-auto" style="font-size: 1.5rem">
-				<li class="nav-item active"><a class="nav-link text-primary p-2"
-					href="dashboard.jsp"><b>Trang Chủ</b></a></li>
+				<li class="nav-item active"><a
+					class="nav-link text-primary p-2" href="dashboard.jsp"><b>Trang
+							Chủ</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
 					href="account.jsp"><b>Tài khoản</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
 					href="friend.jsp"><b>Bạn bè</b></a></li>
 				<li class="nav-item"><a class="nav-link text-primary p-2"
+					href="group.jsp"><b>Nhóm</b></a></li>
+				<li class="nav-item"><a class="nav-link text-primary p-2"
 					href="logout"><b>Đăng xuất</b></a></li>
 			</ul>
-			<form action="" class="form-inline my-2 my-lg-0"
-				method="POST">
+			<form action="" class="form-inline my-2 my-lg-0" method="POST">
 				<input class="form-control mr-sm-2" id="searchBox" name="searchBox"
 					type="search" placeholder="Nhập tên bạn bè" aria-label="Search"
 					required>
@@ -114,36 +118,45 @@ if (user == null) {
 				<input type="file" name="file" required="required"><br>
 				<input type="submit" value="Upload Now!"><br>
 			</form>
-			
+
 		</div>
 	</div>
 	<div class="container">
-	<h3>${requestScope.message}</h3>
-	<p>Xin chào,<b> 
-	<%
-	if (user != null)
-	{
-		out.print(user.getName());
-	}
-	%></b></p>
-	<table class="table table-bordered table-striped table-hover">
-		<thead><tr><th>File ID</th><th>Tên file</th><th>Kích thước</th><th>Kiểu file</th><th>Tải xuống</th></tr></thead>
-		<tbody>
-			<%
-			try {
-				FileDAO filedao = new FileDAO();
-				ArrayList<File> files = (ArrayList<File>) filedao.searchAllFilesOfUser(user.getUser_id());
-				for (File file : files) {
-					out.print("<tr><td>" + file.getFile_id() +"</td><td>"+ file.getFile_name() +"</td><td>" + file.getSize() 
-					+"</td><td>"+ file.getFile_extension() +"</td><td><a href='/ShareFile/download?file="+ file.getFile_name() +"'>Tải xuống</a></td>");
+		<h3>${requestScope.message}</h3>
+		<p>
+			Xin chào,<b> <%
+ if (user != null) {
+ 	out.print(user.getName());
+ }
+ %></b>
+		</p>
+		<table class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th>File ID</th>
+					<th>Tên file</th>
+					<th>Kích thước</th>
+					<th>Kiểu file</th>
+					<th>Tải xuống</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				try {
+					FileDAO filedao = new FileDAO();
+					ArrayList<File> files = (ArrayList<File>) filedao.searchAllFilesOfUser(user.getUser_id());
+					for (File file : files) {
+						out.print("<tr><td>" + file.getFile_id() + "</td><td>" + file.getFile_name() + "</td><td>" + file.getSize()
+						+ "</td><td>" + file.getFile_extension() + "</td><td><a href='/ShareFile/download?file="
+						+ file.getFile_name() + "'>Tải xuống</a></td>");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			%>
-		</tbody>
-	</table>
+				%>
+			</tbody>
+		</table>
 	</div>
-	
+
 </body>
 </html>

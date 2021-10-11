@@ -1,5 +1,6 @@
 package dao;
 
+import model.Group;
 import model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -270,4 +271,27 @@ public class UserDAO extends DAO{
 				e.printStackTrace();
 			}
         }
+        
+        public ArrayList<Group> displayGroup(int userId)
+        {
+        	ArrayList<Group> res = new ArrayList<Group>();
+			String sql = "select * from tblgroup join tbljoingroup on tblgroup.group_id = tbljoingroup.group_id where tbljoingroup.user_id = ?";
+			try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, userId);
+                ResultSet rs = ps.executeQuery();
+                //System.out.println(rs);
+                while (rs.next()) {
+                    Group group = new Group();
+                    group.setGroup_id(rs.getInt("group_id"));
+                    group.setGroup_name(rs.getString("group_name"));
+                    group.setGroup_type(rs.getString("group_type"));
+                    
+                    res.add(group);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return res;
+		}
 }
