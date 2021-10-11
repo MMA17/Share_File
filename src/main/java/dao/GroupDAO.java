@@ -10,6 +10,7 @@ import model.*;
 import com.mysql.cj.protocol.Resultset;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,7 +26,7 @@ public class GroupDAO extends DAO {
             ResultSet rs = ps.executeQuery();
 //            System.out.println(rs);
             int row=rs.getRow();
-            System.out.println(row);
+//            System.out.println(rs.getInt("group_id"));
             if (row < 1) {
                 return false;
             } else {
@@ -91,11 +92,41 @@ public class GroupDAO extends DAO {
             ps.setString(2, group.getGroup_type());
             ps.executeUpdate();
             
-            addUser(user_id, group, note);
+//            addUser(user_id, group, note);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+        
+        sql = "select * from tblgroup where group_name = ?";
+        int groupId = 0;
+        try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, group.getGroup_name());
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+                groupId = rs.getInt("group_id");
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+        
+        sql = "INSERT INTO tbljoingroup(note, user_id, group_id) VALUES(?, ?, ?)";
+        try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, note);
+			ps.setInt(2, user_id);
+			ps.setInt(3, groupId);
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+        
+        
         return true;
     }
     
