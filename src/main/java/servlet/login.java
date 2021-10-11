@@ -14,7 +14,7 @@ import javax.websocket.Session;
 
 import dao.UserDAO;
 import model.User;
-
+import dao.UserDAO;
 @WebServlet(urlPatterns = "/login")
 public class login extends HttpServlet{
 
@@ -42,7 +42,8 @@ public class login extends HttpServlet{
 		User user = uDao.checkLogin(username, password);
 
 		if(user.getUser_id() != 0) {
-			
+			UserDAO userdao = new UserDAO();
+			userdao.setUserStatusOnline(user.getUser_id());
 			HttpSession httpSession = req.getSession();
 			httpSession.setAttribute("user", user);
 			
